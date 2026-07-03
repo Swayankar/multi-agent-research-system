@@ -9,7 +9,7 @@ A FastAPI web app that runs a four-step AI research pipeline:
 
 The browser UI streams live progress over a WebSocket while the synchronous research pipeline runs in a background executor.
 
-[![Live Demo](https://multi-agent-research-system-1070.onrender.com/)
+[Live Demo](https://multi-agent-research-system-1070.onrender.com/)
 
 ## 🎥 Demo Video
 
