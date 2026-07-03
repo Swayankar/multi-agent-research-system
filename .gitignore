@@ -11,9 +11,3 @@ __pycache__/
 
 # VS Code settings
 .vscode/
-
-# macOS
-.DS_Store
-
-# Logs
-*.log

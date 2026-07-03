@@ -1,6 +1,6 @@
 from langchain.agents import create_agent
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_nvidia_ai_endpoints import ChatNVIDIA
+# from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_nvidia_ai_endpoints import ChatNVIDIA
 from langchain_openrouter import ChatOpenRouter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
