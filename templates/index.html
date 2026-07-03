@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="header">
+    <div class="eyebrow">MULTI-AGENT SYSTEM</div>
+    <h1>Research Pipeline</h1>
+    <p class="subtitle">
+      Give it a topic, and four cooperating AI agents take it from there — one searches the web,
+      one reads the full pages behind the best results, one writes a structured report, and one
+      critiques that report before you see it.
+    </p>
+  </header>
+
+  <section class="how-it-works">
+    <div class="hiw-card">
+      <span class="hiw-num">01</span>
+      <h3>Search Agent</h3>
+      <p>Scans the web for recent, reliable sources on your topic.</p>
+    </div>
+    <div class="hiw-card">
+      <span class="hiw-num">02</span>
+      <h3>Reader Agent</h3>
+      <p>Opens the top results and pulls the full page content, not just snippets.</p>
+    </div>
+    <div class="hiw-card">
+      <span class="hiw-num">03</span>
+      <h3>Writer</h3>
+      <p>Turns the raw research into a structured, readable report.</p>
+    </div>
+    <div class="hiw-card">
+      <span class="hiw-num">04</span>
+      <h3>Critic</h3>
+      <p>Scores the draft and flags what's weak before it's final.</p>
+    </div>
+  </section>
+
+  <div id="error-banner" class="error-banner hidden"></div>
+
+  <section class="workspace">
+
+    <div class="panel run-panel">
+      <div class="panel-eyebrow">START HERE</div>
+      <h2>Run a research pass</h2>
+      <p class="panel-desc">
+        Enter any topic you'd like researched. This typically takes a minute or two —
+        you'll see each agent's progress on the right as it happens.
+      </p>
+      <form id="topic-form" class="topic-form">
+        <input
+          type="text"
+          id="topic-input"
+          placeholder="e.g. impact of quantum computing on cryptography"
+          autocomplete="off"
+          required
+        >
+        <button type="submit" id="run-btn">Run pipeline</button>
+      </form>
+      <p class="panel-hint">Tip: specific topics ("EU AI Act enforcement in 2026") get better reports than broad ones ("AI").</p>
+    </div>
+
+    <div class="panel status-panel">
+      <div class="panel-eyebrow">LIVE STATUS</div>
+      <div class="status-head-row">
+        <h2>Pipeline status</h2>
+        <span class="trace-progress" id="trace-progress">0 / 4 complete</span>
+      </div>
+
+      <ul class="status-list">
+        <li class="status-item" data-step="search">
+          <span class="status-node"><span class="node-icon">1</span></span>
+          <span class="status-info">
+            <span class="status-title">Search Agent</span>
+            <span class="status-desc">Finding sources</span>
+          </span>
+          <span class="status-meta">
+            <span class="station-timer" data-role="timer"></span>
+            <span class="station-status" data-role="status">Waiting</span>
+          </span>
+        </li>
+        <li class="status-item" data-step="scrape">
+          <span class="status-node"><span class="node-icon">2</span></span>
+          <span class="status-info">
+            <span class="status-title">Reader Agent</span>
+            <span class="status-desc">Scraping pages</span>
+          </span>
+          <span class="status-meta">
+            <span class="station-timer" data-role="timer"></span>
+            <span class="station-status" data-role="status">Waiting</span>
+          </span>
+        </li>
+        <li class="status-item" data-step="write">
+          <span class="status-node"><span class="node-icon">3</span></span>
+          <span class="status-info">
+            <span class="status-title">Writer</span>
+            <span class="status-desc">Drafting report</span>
+          </span>
+          <span class="status-meta">
+            <span class="station-timer" data-role="timer"></span>
+            <span class="station-status" data-role="status">Waiting</span>
+          </span>
+        </li>
+        <li class="status-item" data-step="critique">
+          <span class="status-node"><span class="node-icon">4</span></span>
+          <span class="status-info">
+            <span class="status-title">Critic</span>
+            <span class="status-desc">Reviewing draft</span>
+          </span>
+          <span class="status-meta">
+            <span class="station-timer" data-role="timer"></span>
+            <span class="station-status" data-role="status">Waiting</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+
+  <section class="intermediate">
+    <div class="panel-eyebrow">INTERMEDIATE RESULTS</div>
+    <h2>What each agent produced</h2>
+    <p class="panel-desc">Collapsed by default — expand any step once it finishes to see its raw output.</p>
+
+    <div class="accordion">
+      <div class="accordion-item" data-step="search">
+        <button class="accordion-toggle" type="button" data-role="toggle" disabled>
+          <span class="accordion-num">1</span>
+          <span class="accordion-title">Search results</span>
+          <span class="accordion-state" data-role="astate">Not started</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="accordion-panel raw hidden" data-role="output"></div>
+      </div>
+
+      <div class="accordion-item" data-step="scrape">
+        <button class="accordion-toggle" type="button" data-role="toggle" disabled>
+          <span class="accordion-num">2</span>
+          <span class="accordion-title">Scraped content</span>
+          <span class="accordion-state" data-role="astate">Not started</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="accordion-panel raw hidden" data-role="output"></div>
+      </div>
+
+      <div class="accordion-item" data-step="write">
+        <button class="accordion-toggle" type="button" data-role="toggle" disabled>
+          <span class="accordion-num">3</span>
+          <span class="accordion-title">Draft report</span>
+          <span class="accordion-state" data-role="astate">Not started</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="accordion-panel markdown hidden" data-role="output"></div>
+      </div>
+
+      <div class="accordion-item" data-step="critique">
+        <button class="accordion-toggle" type="button" data-role="toggle" disabled>
+          <span class="accordion-num">4</span>
+          <span class="accordion-title">Critique</span>
+          <span class="accordion-state" data-role="astate">Not started</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="accordion-panel markdown hidden" data-role="output"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="result" class="result hidden">
+    <div class="panel-eyebrow">FINAL RESULT</div>
+    <h2>Final report</h2>
+    <div class="result-card">
+      <h3>Report</h3>
+      <div id="report-text" class="result-text markdown-output"></div>
+    </div>
+    <div class="result-card">
+      <h3>Critique</h3>
+      <div id="feedback-text" class="result-text markdown-output"></div>
+    </div>
+  </section>
+
+</div>
+
+<script src="/static/marked.min.js"></script> 
+<script src="/static/purify.min.js"></script> 
+<script src="/static/script.js"></script>
+</body>
+</html>
