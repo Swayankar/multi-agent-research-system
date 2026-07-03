@@ -9,6 +9,10 @@ A FastAPI web app that runs a four-step AI research pipeline:
 
 The browser UI streams live progress over a WebSocket while the synchronous research pipeline runs in a background executor.
 
+## 🎥 Demo Video
+
+[Watch the Demo](https://youtu.be/L0D452Rs0oM?si=PIDQpEfQHnf_IY5a)
+
 ## Project Structure
 
 ```text
