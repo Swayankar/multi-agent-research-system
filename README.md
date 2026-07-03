@@ -11,6 +11,8 @@ The browser UI streams live progress over a WebSocket while the synchronous rese
 
 ## Project Structure
 
+```text
+.
 |-- app.py                  # FastAPI app, static/template setup, WebSocket endpoint
 |-- agents.py               # LLM setup, LangChain agents, writer chain, critic chain
 |-- pipeline.py             # Search -> scrape -> write -> critique orchestration
@@ -23,6 +25,7 @@ The browser UI streams live progress over a WebSocket while the synchronous rese
     |-- style.css           # Frontend styling
     |-- marked.min.js       # Markdown rendering in browser
     `-- purify.min.js       # Sanitizes rendered markdown
+```
 
 ## Requirements
 
